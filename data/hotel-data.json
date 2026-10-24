@@ -1,0 +1,55 @@
+{
+  "rooms": [
+    { "id": "room-1", "roomNumber": "101", "type": "Deluxe", "pricePerNight": 180, "capacity": 2, "status": "available", "notes": "Garden view" },
+    { "id": "room-2", "roomNumber": "102", "type": "Standard", "pricePerNight": 120, "capacity": 2, "status": "occupied", "notes": "Quiet corner room" },
+    { "id": "room-3", "roomNumber": "201", "type": "Suite", "pricePerNight": 260, "capacity": 4, "status": "available", "notes": "Two-bedroom suite" },
+    { "id": "room-4", "roomNumber": "202", "type": "Executive", "pricePerNight": 210, "capacity": 2, "status": "maintenance", "notes": "Under repair" },
+    { "id": "room-5", "roomNumber": "301", "type": "Standard", "pricePerNight": 130, "capacity": 2, "status": "occupied", "notes": "City view, near elevator" }
+  ],
+  "guests": [
+    { "id": "guest-1", "firstName": "Emma", "lastName": "Brown", "email": "emma.brown@example.com", "phone": "555-0101", "nationality": "American", "vip": true },
+    { "id": "guest-2", "firstName": "Daniel", "lastName": "Miller", "email": "daniel.miller@example.com", "phone": "555-0102", "nationality": "Canadian", "vip": false },
+    { "id": "guest-3", "firstName": "Sofia", "lastName": "Nguyen", "email": "sofia.nguyen@example.com", "phone": "555-0103", "nationality": "Vietnamese", "vip": true }
+  ],
+  "bookings": [
+    {
+      "id": "booking-1",
+      "guestId": "guest-1",
+      "roomId": "room-1",
+      "roomNumber": "101",
+      "guestName": "Emma Brown",
+      "checkIn": "2026-10-22",
+      "checkOut": "2026-10-27",
+      "nights": 5,
+      "status": "checked-in",
+      "totalAmount": 900,
+      "createdAt": "2026-10-20T08:00:00.000Z"
+    },
+    {
+      "id": "booking-2",
+      "guestId": "guest-2",
+      "roomId": "room-2",
+      "roomNumber": "102",
+      "guestName": "Daniel Miller",
+      "checkIn": "2026-10-23",
+      "checkOut": "2026-10-30",
+      "nights": 7,
+      "status": "confirmed",
+      "totalAmount": 840,
+      "createdAt": "2026-10-21T09:00:00.000Z"
+    },
+    {
+      "id": "booking-3",
+      "guestId": "guest-3",
+      "roomId": "room-5",
+      "roomNumber": "301",
+      "guestName": "Sofia Nguyen",
+      "checkIn": "2026-10-25",
+      "checkOut": "2026-10-28",
+      "nights": 3,
+      "status": "checked-in",
+      "totalAmount": 390,
+      "createdAt": "2026-10-22T10:00:00.000Z"
+    }
+  ]
+}

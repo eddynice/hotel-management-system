@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel Management System</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div>
+          <div class="brand">
+            <div class="brand-icon">H</div>
+            <div>
+              <h1>Harbor Hotel</h1>
+              <p>Management Suite</p>
+            </div>
+          </div>
+
+          <nav class="nav">
+            <button class="nav-item active" data-tab="overview">Overview</button>
+            <button class="nav-item" data-tab="rooms">Rooms</button>
+            <button class="nav-item" data-tab="guests">Guests</button>
+            <button class="nav-item" data-tab="bookings">Bookings</button>
+          </nav>
+        </div>
+
+        <div class="sidebar-footer">
+          <p>Front desk operations</p>
+          <span>Live dashboard</span>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Hotel operations</p>
+            <h2>Dashboard</h2>
+          </div>
+          <div class="status-pill">System online</div>
+        </header>
+
+        <section id="overview" class="tab-panel active">
+          <div class="metrics-grid" id="summaryCards"></div>
+
+          <div class="chart-row">
+            <div class="panel">
+              <div class="panel-header">
+                <h3>Upcoming check-ins</h3>
+              </div>
+              <div id="upcomingReservations" class="stack-list"></div>
+            </div>
+
+            <div class="panel">
+              <div class="panel-header">
+                <h3>Recent bookings</h3>
+              </div>
+              <div id="recentBookings" class="stack-list"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="rooms" class="tab-panel">
+          <div class="panel">
+            <div class="panel-header split">
+              <h3>Rooms</h3>
+              <button class="button primary" id="toggleRoomForm">Add room</button>
+            </div>
+
+            <form id="roomForm" class="entry-form hidden">
+              <div class="field-row">
+                <label>
+                  Room number
+                  <input type="text" name="roomNumber" placeholder="101" required />
+                </label>
+                <label>
+                  Type
+                  <select name="type" required>
+                    <option value="Standard">Standard</option>
+                    <option value="Deluxe">Deluxe</option>
+                    <option value="Suite">Suite</option>
+                    <option value="Executive">Executive</option>
+                  </select>
+                </label>
+              </div>
+              <div class="field-row">
+                <label>
+                  Price per night
+                  <input type="number" name="pricePerNight" min="0" step="1" required />
+                </label>
+                <label>
+                  Capacity
+                  <input type="number" name="capacity" min="1" step="1" required />
+                </label>
+              </div>
+              <div class="field-row">
+                <label>
+                  Status
+                  <select name="status">
+                    <option value="available">Available</option>
+                    <option value="occupied">Occupied</option>
+                    <option value="maintenance">Maintenance</option>
+                  </select>
+                </label>
+                <label>
+                  Notes
+                  <input type="text" name="notes" placeholder="Ocean view" />
+                </label>
+              </div>
+              <button class="button primary" type="submit">Save room</button>
+            </form>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Room</th>
+                    <th>Type</th>
+                    <th>Rate</th>
+                    <th>Capacity</th>
+                    <th>Status</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody id="roomsTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section id="guests" class="tab-panel">
+          <div class="panel">
+            <div class="panel-header split">
+              <h3>Guests</h3>
+              <button class="button primary" id="toggleGuestForm">Add guest</button>
+            </div>
+
+            <form id="guestForm" class="entry-form hidden">
+              <div class="field-row">
+                <label>
+                  First name
+                  <input type="text" name="firstName" required />
+                </label>
+                <label>
+                  Last name
+                  <input type="text" name="lastName" required />
+                </label>
+              </div>
+              <div class="field-row">
+                <label>
+                  Email
+                  <input type="email" name="email" required />
+                </label>
+                <label>
+                  Phone
+                  <input type="tel" name="phone" />
+                </label>
+              </div>
+              <div class="field-row">
+                <label>
+                  Nationality
+                  <input type="text" name="nationality" />
+                </label>
+                <label class="checkbox-wrap">
+                  <input type="checkbox" name="vip" />
+                  VIP guest
+                </label>
+              </div>
+              <button class="button primary" type="submit">Save guest</button>
+            </form>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Guest</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Nationality</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="guestsTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section id="bookings" class="tab-panel">
+          <div class="panel">
+            <div class="panel-header split">
+              <h3>Bookings</h3>
+              <button class="button primary" id="toggleBookingForm">New reservation</button>
+            </div>
+
+            <form id="bookingForm" class="entry-form hidden">
+              <div class="field-row">
+                <label>
+                  Guest
+                  <select name="guestId" id="bookingGuestSelect" required></select>
+                </label>
+                <label>
+                  Room
+                  <select name="roomId" id="bookingRoomSelect" required></select>
+                </label>
+              </div>
+              <div class="field-row">
+                <label>
+                  Check-in
+                  <input type="date" name="checkIn" required />
+                </label>
+                <label>
+                  Check-out
+                  <input type="date" name="checkOut" required />
+                </label>
+              </div>
+              <button class="button primary" type="submit">Create booking</button>
+            </form>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Guest</th>
+                    <th>Room</th>
+                    <th>Dates</th>
+                    <th>Nights</th>
+                    <th>Status</th>
+                    <th>Total</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="bookingsTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
